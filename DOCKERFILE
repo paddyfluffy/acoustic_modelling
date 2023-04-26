@@ -1,10 +1,10 @@
 # Use the official DOLFINx Docker image as the base image
 FROM dolfinx/dolfinx:latest
 
-# Install PETSc dependencies and complex support
-RUN apt-get update && \
-    apt-get install -y liblapack-dev libscalapack-mpi-dev libmetis-dev libparmetis-dev && \
-    rm -rf /var/lib/apt/lists/*
+# # Install PETSc dependencies and complex support
+# RUN apt-get update && \
+#     apt-get install -y liblapack-dev libscalapack-mpi-dev libmetis-dev libparmetis-dev && \
+#     rm -rf /var/lib/apt/lists/*
 
 EXPOSE 80
 
