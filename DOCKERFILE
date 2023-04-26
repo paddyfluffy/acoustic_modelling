@@ -6,16 +6,7 @@ RUN apt-get update && \
     apt-get install -y liblapack-dev libscalapack-mpi-dev libmetis-dev libparmetis-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Build and install PETSc with complex support
-ENV PETSC_VERSION 3.16.0
-RUN wget https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-${PETSC_VERSION}.tar.gz && \
-    tar xzf petsc-lite-${PETSC_VERSION}.tar.gz && \
-    cd petsc-${PETSC_VERSION} && \
-    ./configure --download-metis --download-parmetis --with-scalapack --with-metis --with-parmetis --with-lapack --with-hypre --with-superlu_dist --with-superlu --with-mumps --with-mumps-include=/usr/include/mumps --with-mumps-lib=-ldmumps -lpord -lmpiseq -lmetis -lpthread -ldl --with-sowing=/usr/local/sowing --with-hwloc=0 && \
-    make PETSC_ARCH=linux-gnu-complex all && \
-    make PETSC_ARCH=linux-gnu-complex test && \
-    make PETSC_ARCH=linux-gnu-complex install && \
-    rm -rf ../petsc-${PETSC_VERSION} ../petsc-lite-${PETSC_VERSION}.tar.gz
+EXPOSE 80
 
 # Set environment variables for PETSc
 ENV PETSC_DIR=/usr/lib/petsc
