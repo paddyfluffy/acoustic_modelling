@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y liblapack-dev libscalapack-mpi-dev libmetis-dev libparmetis-dev && \
     rm -rf /var/lib/apt/lists/*
 
-EXP
+EXPOSE 80
 
 # Set environment variables for PETSc
 ENV PETSC_DIR=/usr/lib/petsc
