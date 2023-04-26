@@ -6,14 +6,14 @@ RUN apt-get update && \
     apt-get install -y liblapack-dev libscalapack-mpi-dev libmetis-dev libparmetis-dev && \
     rm -rf /var/lib/apt/lists/*
 
-EXPOSE 80
+EXP
 
 # Set environment variables for PETSc
 ENV PETSC_DIR=/usr/lib/petsc
 ENV PETSC_ARCH=linux-gnu-complex
 
 # Set environment variable for DolfinX
-ENV DOLFINX_PETSC_LIBRARY_DIRS=/usr/lib/petsc/linux-gnu-complex/lib
+# ENV DOLFINX_PETSC_LIBRARY_DIRS=/usr/lib/petsc/linux-gnu-complex/lib
 
 # Set the working directory
 WORKDIR /acoustic_modelling
