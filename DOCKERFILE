@@ -1,19 +1,16 @@
-# Use the official DOLFINx Docker image as the base image
-FROM dolfinx/dolfinx:latest
-
-# # Install PETSc dependencies and complex support
-# RUN apt-get update && \
-#     apt-get install -y liblapack-dev libscalapack-mpi-dev libmetis-dev libparmetis-dev && \
-#     rm -rf /var/lib/apt/lists/*
-
-EXPOSE 80
-
-# Set environment variables for PETSc
-ENV PETSC_DIR=/usr/lib/petsc
-ENV PETSC_ARCH=linux-gnu-complex
-
-# Set environment variable for DolfinX
-# ENV DOLFINX_PETSC_LIBRARY_DIRS=/usr/lib/petsc/linux-gnu-complex/lib
+FROM dolfinx/lab:stable
 
 # Set the working directory
-WORKDIR /acoustic_modelling
+WORKDIR /root/shared
+
+# Copy the contents of the current directory to the container
+COPY . .
+
+# Install additional Python libraries
+RUN pip install cadquery perlin-noise
+
+# Expose the port that JupyterLab runs on
+EXPOSE 8888
+
+# Start JupyterLab using the entrypoint command from the base image
+ENTRYPOINT ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root"]
