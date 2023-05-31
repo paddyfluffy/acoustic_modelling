@@ -3,6 +3,9 @@ FROM dolfinx/lab:stable
 # Set the working directory
 WORKDIR /root/shared
 
+ENV PETSC_DIR=/usr/lib/petsc
+ENV PETSC_ARCH=linux-gnu-complex
+
 # Copy the contents of the current directory to the container
 COPY . .
 
