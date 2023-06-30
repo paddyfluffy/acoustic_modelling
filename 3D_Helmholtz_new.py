@@ -99,6 +99,8 @@ deg = 2
 #frequency range definition
 f_axis = np.arange(50, 2005, 5)
 
+f_axis = [1000]
+
 #Mic position definition
 mic = np.array([0.05, 0.05, 0.05])
 
@@ -160,6 +162,7 @@ problem = LinearProblem(a, L, u=uh, petsc_options={"ksp_type": "preonly", "pc_ty
 p_mic = np.zeros((len(f_axis),1),dtype=complex)
 
 # frequency for loop
+
 print(" ")
 for nf in range(0,len(f_axis)):
     print ("\033[A                             \033[A")
@@ -204,12 +207,12 @@ for nf in range(0,len(f_axis)):
     # Time loop
         
     t0 = 0.0
-    t1 = 0.5
-    dt = 0.001
+    t1 = 0.01
+    dt = 0.00001
     num_time_steps = int((t1 - t0) / dt)
     file_name = "time_xdmf" + str(freq) + ".xdmf"
     # vtk_file = VTKFile(MPI.COMM_SELF, file_name, "w")
-    xdmf_file = XDMFFile(MPI.COMM_SELF, os.path.join("3d_box_results", file_name), "w")
+    xdmf_file = XDMFFile(MPI.COMM_SELF, os.path.join("0_0001_sec_1000hz", file_name), "w")
     
     xdmf_file.write_mesh(msh)
 
